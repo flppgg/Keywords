@@ -1,6 +1,6 @@
 import nltk, Levenshtein, datetime, chardet, ast
 from nltk.corpus import words
-path='c:\users\carla\desktop\\'
+path='my/path'
 bunch=1000
 
 list_of_articles=[]
@@ -11,7 +11,7 @@ insieme=frozenset(words.words())
 
 ora=datetime.datetime.now()
 print 'opening file '+str(ora)
-with open(path+'madonna.txt','r') as f:
+with open(path+'titles.txt','r') as f:
     u=[]
     for l in f:
         #u.append(ast.literal_eval(l))
@@ -248,56 +248,6 @@ for a in range(0,len(list_of_articles)):
 		o+=1
 
 print 'total: '+str(len(list_of_articles))+'. '+str(n)+' Have no accepted sequence of 3. '+str(o)+' Have no accepted sequence of 2. '
-
-
-for n in range(0,len(list_of_articles), bunch):
-    f=open(path+str(n)+'.js','w')
-    if n==0:
-        f.write("var createGraph = require('ngraph.graph');\n")
-        f.write("var g = createGraph();\n")
-    else:
-        f.write("var g = require('%s.js');\n" %str(n-bunch))
-    gg=0
-    for v in range(n,n+bunch):
-        try:
-            scrivi(list_of_articles[v],f)
-        except IndexError:
-            gg+=1
-            if gg==1:
-                #f.write("var createLayout = require('ngraph.offline.layout');\n")
-                #f.write("var layout = createLayout(g);\n")
-                f.write("var save = require('ngraph.tobinary');\n")
-                #f.write("layout.run();\n")
-                f.write("save(graph);\n")
-    f.write('module.export(g)\n')
-    f.close()
-
-
                 
-##with open(path+'bello.js','w') as f:
-##	f.write("var createGraph = require('ngraph.graph');\n")
-##	f.write("var g = createGraph();\n")
-##	for n in range(len(list_of_articles)):
-##		if not not list_of_articles[n][3]:
-##			for u in range(len(list_of_articles[n][3])):
-##				uu=list_of_articles[n][3][u]
-##				f.write("    g.addLink('")
-##				f.write(list_of_articles[n][0].replace("'","").replace("\\","").encode('utf8'))
-##				f.write("', '")
-##				f.write(uu.replace("'","").replace("\\","").encode('utf8'))
-##				f.write("');\n")
-##		if not not list_of_articles[n][4]:
-##			for o in range(len(list_of_articles[n][4])):
-##				f.write("    g.addLink('")
-##				f.write(list_of_articles[n][0].replace("'","").replace("\\","").encode('utf8'))
-##				f.write("', '")
-##				f.write(list_of_articles[n][4][o].replace("'","").replace("\\","").encode('utf8'))
-##				f.write("');\n")
-##	f.write("var createLayout = require('ngraph.offline.layout');\n")
-##	f.write("var layout = createLayout(g);\n")
-##	f.write("var save = require('ngraph.tobinary');\n")
-##	f.write("layout.run();\n")
-##	f.write("save(graph);\n")
-
 orapiu=datetime.datetime.now()
 print 'saving to file '+str(orapiu-ora)
