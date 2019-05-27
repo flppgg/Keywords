@@ -9,5 +9,5 @@ By combining the Natural Language Toolkit ([NLTK](https://www.nltk.org/)) packag
 
 This was written to scale well up to tens of millions of article titles, and millions of keywords. A few optimizations to the algorithm will be added in the following weeks.
 
-This is just a beta project, you can find a visualization of a graph constructed using this algorithm [here](18.191.13.81). 
+This is just a beta project, you can find a visualization of a graph constructed using this algorithm [here](http://18.191.13.81/#/?_k=hvtoo8). 
 Thanks to Anvaka for the excellent visualization engine!
